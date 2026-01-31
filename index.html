@@ -1,0 +1,1959 @@
+<!doctype html>
+<html lang="es" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Claro Honduras - Tu tienda de celulares importados, servicios de internet y telecomunicaciones. Pásate al futuro, pásate a Claro Fibra.">
+  <title>Claro Honduras | Celulares, Internet y Más</title><!-- SDK -->
+  <script src="/_sdk/element_sdk.js"></script><!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=Open+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"><!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'claro-red': '#DA291C',
+                        'claro-red-dark': '#B71C1C',
+                        'claro-red-light': '#EF5350',
+                        'claro-gray': '#424242',
+                        'claro-light': '#F5F5F5',
+                        'claro-accent': '#FF6B6B'
+                    },
+                    fontFamily: {
+                        'heading': ['Montserrat', 'sans-serif'],
+                        'body': ['Open Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #DA291C;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B71C1C;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(218, 41, 28, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 20px 10px rgba(218, 41, 28, 0.2);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        /* Card Hover Effects */
+        .product-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        
+        .product-image {
+            transition: transform 0.4s ease;
+        }
+        
+        /* Button Effects */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:active {
+            transform: scale(0.95);
+        }
+        
+        /* Navigation */
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #DA291C;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 0.5rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+            min-width: 200px;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, #DA291C 0%, #B71C1C 50%, #8B0000 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Badge Styles */
+        .badge-available {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+        }
+        
+        .badge-imported {
+            background: linear-gradient(135deg, #2196F3, #1565C0);
+        }
+        
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Section Transitions */
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* WhatsApp Button Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1000;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        
+        /* Service Cards */
+        .service-card {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .service-card:hover {
+            border-color: #DA291C;
+            transform: translateY(-5px);
+        }
+        
+        /* Input Focus States */
+        .input-field:focus {
+            outline: none;
+            border-color: #DA291C;
+            box-shadow: 0 0 0 3px rgba(218, 41, 28, 0.2);
+        }
+        
+        /* Cart Badge Animation */
+        .cart-badge {
+            animation: fadeInUp 0.3s ease-out;
+        }
+        
+        /* Quantity Buttons */
+        .qty-btn {
+            transition: all 0.2s ease;
+        }
+        
+        .qty-btn:hover {
+            background: #DA291C;
+            color: white;
+        }
+        
+        .qty-btn:active {
+            transform: scale(0.9);
+        }
+        
+        /* Grid responsive */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-body bg-white text-claro-gray">
+  <div id="app" class="h-full w-full overflow-auto"><!-- ==================== HEADER / NAVIGATION ==================== -->
+   <header id="main-header" class="bg-white shadow-md sticky top-0 z-50"><!-- Top Bar -->
+    <div class="bg-claro-red text-white py-2 px-4">
+     <div class="max-w-7xl mx-auto flex justify-between items-center text-sm">
+      <div class="flex items-center gap-4"><span class="flex items-center gap-1">
+        <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+        </svg> +504 9742-2946 </span> <span class="hidden md:flex items-center gap-1">
+        <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /> <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+        </svg> info@clarohn.com </span>
+      </div>
+      <div class="flex items-center gap-2"><!-- Honduras Flag -->
+       <svg class="w-6 h-4" viewbox="0 0 36 24"><rect width="36" height="8" fill="#00BCE4" /> <rect y="8" width="36" height="8" fill="#FFFFFF" /> <rect y="16" width="36" height="8" fill="#00BCE4" /> <!-- Stars --> <g fill="#00BCE4">
+         <polygon points="18,10 18.5,11.5 20,11.5 18.8,12.3 19.2,14 18,13 16.8,14 17.2,12.3 16,11.5 17.5,11.5" />
+        </g>
+       </svg><span class="font-semibold">Honduras</span>
+      </div>
+     </div>
+    </div><!-- Main Navigation -->
+    <nav class="max-w-7xl mx-auto px-4 py-3">
+     <div class="flex justify-between items-center"><!-- Logo --> <a href="#" onclick="navigateTo('home'); return false;" class="flex items-center gap-2">
+       <div class="relative">
+        <svg class="w-12 h-12" viewbox="0 0 60 60"><circle cx="30" cy="30" r="28" fill="#DA291C" /> <text x="30" y="38" font-family="Montserrat, sans-serif" font-size="18" font-weight="800" fill="white" text-anchor="middle">
+          C
+         </text>
+        </svg>
+       </div>
+       <div><span class="font-heading font-bold text-2xl text-claro-red">Claro</span> <span class="font-heading font-medium text-lg text-claro-gray block -mt-1">Honduras</span>
+       </div></a> <!-- Desktop Menu -->
+      <div class="hidden lg:flex items-center gap-6"><a href="#" onclick="navigateTo('home'); return false;" class="nav-link font-heading font-medium text-claro-gray hover:text-claro-red transition-colors" data-nav="home">Inicio</a> <!-- Dropdown Catálogo -->
+       <div class="dropdown"><button class="nav-link font-heading font-medium text-claro-gray hover:text-claro-red transition-colors flex items-center gap-1"> Catálogo 
+         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+         </svg></button>
+        <div class="dropdown-menu"><a href="#" onclick="navigateTo('postpago'); return false;" class="block px-4 py-3 text-claro-gray hover:bg-claro-light hover:text-claro-red transition-colors rounded-t-xl font-medium">📱 Postpago</a> <a href="#" onclick="navigateTo('prepago'); return false;" class="block px-4 py-3 text-claro-gray hover:bg-claro-light hover:text-claro-red transition-colors font-medium">💳 Prepago</a> <a href="#" onclick="navigateTo('catalog'); return false;" class="block px-4 py-3 text-claro-gray hover:bg-claro-light hover:text-claro-red transition-colors rounded-b-xl font-medium">🛒 Equipos</a>
+        </div>
+       </div><a href="#" onclick="navigateTo('claro-hogar'); return false;" class="nav-link font-heading font-medium text-claro-gray hover:text-claro-red transition-colors" data-nav="claro-hogar">Claro Hogar</a> <a href="#" onclick="navigateTo('accesorios'); return false;" class="nav-link font-heading font-medium text-claro-gray hover:text-claro-red transition-colors" data-nav="accesorios">Accesorios</a> <a href="#" onclick="navigateTo('recargas'); return false;" class="nav-link font-heading font-medium text-claro-gray hover:text-claro-red transition-colors" data-nav="recargas">Recargas</a> <a href="#" onclick="navigateTo('claro-tv'); return false;" class="nav-link font-heading font-medium text-claro-gray hover:text-claro-red transition-colors" data-nav="claro-tv">Claro TV</a> <a href="#" onclick="navigateTo('soporte'); return false;" class="nav-link font-heading font-medium text-claro-gray hover:text-claro-red transition-colors" data-nav="soporte">Soporte</a>
+      </div><!-- Right Actions -->
+      <div class="flex items-center gap-4"><!-- Cart Button --> <button onclick="navigateTo('cart')" class="relative p-2 hover:bg-gray-100 rounded-full transition-colors">
+        <svg class="w-6 h-6 text-claro-gray" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg><span id="cart-count" class="cart-badge absolute -top-1 -right-1 bg-claro-red text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center hidden">0</span> </button> <!-- Mobile Menu Button --> <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden p-2 hover:bg-gray-100 rounded-full transition-colors">
+        <svg class="w-6 h-6 text-claro-gray" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg></button>
+      </div>
+     </div>
+    </nav><!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 w-72 h-full bg-white shadow-2xl z-50 lg:hidden overflow-y-auto">
+     <div class="p-6">
+      <div class="flex justify-between items-center mb-8"><span class="font-heading font-bold text-xl text-claro-red">Menú</span> <button onclick="toggleMobileMenu()" class="p-2 hover:bg-gray-100 rounded-full">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg></button>
+      </div>
+      <nav class="space-y-2"><a href="#" onclick="navigateTo('home'); toggleMobileMenu(); return false;" class="block py-3 px-4 font-heading font-medium text-claro-gray hover:bg-claro-light hover:text-claro-red rounded-lg transition-all">🏠 Inicio</a>
+       <div class="border-t pt-2 mt-2">
+        <p class="px-4 py-2 text-xs font-bold text-gray-500 uppercase">Catálogo</p><a href="#" onclick="navigateTo('postpago'); toggleMobileMenu(); return false;" class="block py-3 px-4 font-heading font-medium text-claro-gray hover:bg-claro-light hover:text-claro-red rounded-lg transition-all">📱 Postpago</a> <a href="#" onclick="navigateTo('prepago'); toggleMobileMenu(); return false;" class="block py-3 px-4 font-heading font-medium text-claro-gray hover:bg-claro-light hover:text-claro-red rounded-lg transition-all">💳 Prepago</a> <a href="#" onclick="navigateTo('catalog'); toggleMobileMenu(); return false;" class="block py-3 px-4 font-heading font-medium text-claro-gray hover:bg-claro-light hover:text-claro-red rounded-lg transition-all">🛒 Equipos</a>
+       </div><a href="#" onclick="navigateTo('claro-hogar'); toggleMobileMenu(); return false;" class="block py-3 px-4 font-heading font-medium text-claro-gray hover:bg-claro-light hover:text-claro-red rounded-lg transition-all">🏡 Claro Hogar</a> <a href="#" onclick="navigateTo('accesorios'); toggleMobileMenu(); return false;" class="block py-3 px-4 font-heading font-medium text-claro-gray hover:bg-claro-light hover:text-claro-red rounded-lg transition-all">🎧 Accesorios</a> <a href="#" onclick="navigateTo('recargas'); toggleMobileMenu(); return false;" class="block py-3 px-4 font-heading font-medium text-claro-gray hover:bg-claro-light hover:text-claro-red rounded-lg transition-all">💰 Recargas</a> <a href="#" onclick="navigateTo('claro-tv'); toggleMobileMenu(); return false;" class="block py-3 px-4 font-heading font-medium text-claro-gray hover:bg-claro-light hover:text-claro-red rounded-lg transition-all">📺 Claro TV</a> <a href="#" onclick="navigateTo('soporte'); toggleMobileMenu(); return false;" class="block py-3 px-4 font-heading font-medium text-claro-gray hover:bg-claro-light hover:text-claro-red rounded-lg transition-all">🛠️ Soporte</a> <a href="#" onclick="navigateTo('cart'); toggleMobileMenu(); return false;" class="block py-3 px-4 font-heading font-medium text-claro-red hover:bg-claro-light rounded-lg transition-all border-t mt-2 pt-4">🛒 Mi Carrito</a>
+      </nav>
+     </div>
+    </div>
+   </header><!-- Mobile Menu Overlay -->
+   <div id="menu-overlay" onclick="toggleMobileMenu()" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden"></div><!-- ==================== MAIN CONTENT ==================== -->
+   <main id="main-content"><!-- ==================== HOME SECTION ==================== -->
+    <section id="section-home" class="section visible"><!-- Hero Banner -->
+     <div class="hero-banner min-h-96 md:min-h-[500px] flex items-center relative">
+      <div class="max-w-7xl mx-auto px-4 py-16 md:py-24 w-full">
+       <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div class="text-white animate-fadeInUp">
+         <div class="flex items-center gap-2 mb-4"><!-- Honduras Flag Badge -->
+          <svg class="w-10 h-7" viewbox="0 0 36 24"><rect width="36" height="8" fill="#00BCE4" /> <rect y="8" width="36" height="8" fill="#FFFFFF" /> <rect y="16" width="36" height="8" fill="#00BCE4" /> <g fill="#00BCE4">
+            <polygon points="18,10 18.5,11.5 20,11.5 18.8,12.3 19.2,14 18,13 16.8,14 17.2,12.3 16,11.5 17.5,11.5" />
+           </g>
+          </svg><span class="font-heading font-semibold text-lg">100% Hondureño</span>
+         </div>
+         <h1 id="hero-title" class="font-heading font-extrabold text-4xl md:text-6xl lg:text-7xl mb-2 leading-tight">PÁSATE AL FUTURO</h1>
+         <h2 id="hero-subtitle" class="font-heading font-bold text-3xl md:text-5xl lg:text-6xl mb-6 text-white/90">PÁSATE A CLARO FIBRA</h2>
+         <p class="text-lg md:text-xl mb-8 text-white/80 max-w-xl">Los mejores celulares importados, internet de alta velocidad y servicios de telecomunicaciones para tu hogar y negocio.</p>
+         <div class="flex flex-wrap gap-4"><button onclick="navigateTo('postpago')" class="btn-primary bg-white text-claro-red font-heading font-bold py-4 px-8 rounded-full hover:bg-gray-100 shadow-lg transform hover:scale-105 transition-all"> Ver Planes 📱 </button> <button onclick="navigateTo('claro-hogar')" class="btn-primary bg-transparent border-2 border-white text-white font-heading font-bold py-4 px-8 rounded-full hover:bg-white/10 transition-all"> Internet Hogar </button>
+         </div>
+        </div>
+        <div class="hidden md:flex justify-center">
+         <div class="relative animate-float"><!-- Phone Mockup SVG -->
+          <svg class="w-64 lg:w-80" viewbox="0 0 200 400"><defs>
+            <lineargradient id="phoneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+             <stop offset="0%" style="stop-color:#2d2d2d" />
+             <stop offset="100%" style="stop-color:#1a1a1a" />
+            </lineargradient>
+            <lineargradient id="screenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+             <stop offset="0%" style="stop-color:#DA291C" />
+             <stop offset="50%" style="stop-color:#B71C1C" />
+             <stop offset="100%" style="stop-color:#8B0000" />
+            </lineargradient>
+           </defs> <rect x="10" y="10" width="180" height="380" rx="30" fill="url(#phoneGrad)" /> <rect x="20" y="50" width="160" height="300" rx="5" fill="url(#screenGrad)" /> <circle cx="100" cy="30" r="5" fill="#333" /> <rect x="80" y="360" width="40" height="5" rx="2" fill="#333" /> <text x="100" y="180" font-family="Montserrat" font-size="24" font-weight="800" fill="white" text-anchor="middle">
+            CLARO
+           </text> <text x="100" y="210" font-family="Montserrat" font-size="12" fill="white" text-anchor="middle">
+            Honduras
+           </text> <text x="100" y="250" font-family="Open Sans" font-size="10" fill="white" text-anchor="middle" opacity="0.8">
+            Conectando Vidas
+           </text>
+          </svg><!-- Floating Elements -->
+          <div class="absolute -top-4 -right-4 bg-white rounded-full p-3 shadow-lg animate-pulse"><span class="text-2xl">📶</span>
+          </div>
+          <div class="absolute bottom-20 -left-8 bg-white rounded-full p-3 shadow-lg animate-pulse" style="animation-delay: 0.5s;"><span class="text-2xl">⚡</span>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Decorative Wave -->
+      <svg class="absolute bottom-0 left-0 w-full" viewbox="0 0 1440 100" preserveaspectratio="none"><path fill="white" d="M0,50 C360,100 1080,0 1440,50 L1440,100 L0,100 Z" />
+      </svg>
+     </div><!-- Quick Access Cards -->
+     <div class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4">
+       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div onclick="navigateTo('postpago')" class="service-card bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 text-center cursor-pointer hover:shadow-xl"><span class="text-5xl mb-4 block">📱</span>
+         <h3 class="font-heading font-bold text-lg mb-2">Planes Postpago</h3>
+         <p class="text-gray-600 text-sm">Desde L.699/mes con datos ilimitados</p>
+        </div>
+        <div onclick="navigateTo('prepago')" class="service-card bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 text-center cursor-pointer hover:shadow-xl"><span class="text-5xl mb-4 block">💳</span>
+         <h3 class="font-heading font-bold text-lg mb-2">Planes Prepago</h3>
+         <p class="text-gray-600 text-sm">Recarga y controla tus gastos</p>
+        </div>
+        <div onclick="navigateTo('claro-hogar')" class="service-card bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-6 text-center cursor-pointer hover:shadow-xl"><span class="text-5xl mb-4 block">🏡</span>
+         <h3 class="font-heading font-bold text-lg mb-2">Claro Hogar</h3>
+         <p class="text-gray-600 text-sm">Internet fibra para tu hogar</p>
+        </div>
+        <div onclick="navigateTo('claro-tv')" class="service-card bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 text-center cursor-pointer hover:shadow-xl"><span class="text-5xl mb-4 block">📺</span>
+         <h3 class="font-heading font-bold text-lg mb-2">Claro TV</h3>
+         <p class="text-gray-600 text-sm">Entretenimiento sin límites</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><!-- ==================== POSTPAGO SECTION ==================== -->
+    <section id="section-postpago" class="section hidden py-16 bg-gray-50">
+     <div class="max-w-7xl mx-auto px-4"><!-- Back Button --> <button onclick="navigateTo('home')" class="flex items-center gap-2 text-claro-red font-semibold mb-8 hover:underline">
+       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+       </svg> Volver al Inicio </button>
+      <div class="text-center mb-12">
+       <h1 class="font-heading font-bold text-4xl md:text-5xl text-claro-gray mb-4">Planes <span class="text-claro-red">Postpago</span></h1>
+       <p class="text-gray-600 max-w-2xl mx-auto">Elige el plan que mejor se adapte a ti. Todos incluyen llamadas y SMS ilimitados a nivel nacional.</p>
+      </div><!-- Planes Digitales -->
+      <div class="mb-12">
+       <h2 class="font-heading font-bold text-2xl text-center mb-8">📱 Planes Digitales</h2>
+       <div class="grid md:grid-cols-3 gap-8"><!-- Plan 40GB -->
+        <div class="bg-white rounded-3xl p-8 shadow-lg border-2 border-gray-200 hover:border-claro-red transition-all">
+         <div class="text-center"><span class="inline-block bg-gray-200 text-gray-700 text-sm font-bold px-4 py-1 rounded-full mb-4">DIGITAL BÁSICO</span>
+          <h3 class="font-heading font-bold text-2xl mb-2">Plan 40 GB</h3>
+          <div class="flex items-baseline justify-center gap-1 mb-4"><span class="text-4xl font-heading font-extrabold text-claro-red">L.699</span> <span class="text-gray-500">/mes</span>
+          </div>
+          <ul class="text-left space-y-3 mb-8">
+           <li class="flex items-center gap-2"><span class="text-green-500 text-xl">✓</span> 40 GB de navegación</li>
+           <li class="flex items-center gap-2"><span class="text-green-500 text-xl">✓</span> Llamadas ilimitadas</li>
+           <li class="flex items-center gap-2"><span class="text-green-500 text-xl">✓</span> SMS ilimitados</li>
+           <li class="flex items-center gap-2"><span class="text-green-500 text-xl">✓</span> Redes sociales incluidas</li>
+           <li class="flex items-center gap-2"><span class="text-green-500 text-xl">✓</span> WhatsApp sin límite</li>
+          </ul><button onclick="addServiceToCart('plan-40gb', 'Plan Postpago 40 GB', 699)" class="w-full btn-primary bg-claro-red text-white font-bold py-3 rounded-full hover:bg-claro-red-dark transition-all"> Contratar Ahora </button>
+         </div>
+        </div><!-- Plan 45GB - DESTACADO -->
+        <div class="bg-gradient-to-br from-claro-red to-claro-red-dark rounded-3xl p-8 text-white transform md:scale-105 shadow-2xl relative">
+         <div class="absolute -top-4 left-1/2 transform -translate-x-1/2"><span class="bg-yellow-400 text-yellow-900 text-sm font-bold px-4 py-1 rounded-full">⭐ MÁS POPULAR</span>
+         </div>
+         <div class="text-center pt-4"><span class="inline-block bg-white/20 text-white text-sm font-bold px-4 py-1 rounded-full mb-4">DIGITAL PLUS</span>
+          <h3 class="font-heading font-bold text-2xl mb-2">Plan 45 GB</h3>
+          <div class="flex items-baseline justify-center gap-1 mb-4"><span class="text-4xl font-heading font-extrabold">L.859</span> <span class="text-white/70">/mes</span>
+          </div>
+          <ul class="text-left space-y-3 mb-8">
+           <li class="flex items-center gap-2"><span class="text-xl">✓</span> 45 GB de navegación</li>
+           <li class="flex items-center gap-2"><span class="text-xl">✓</span> Llamadas ilimitadas</li>
+           <li class="flex items-center gap-2"><span class="text-xl">✓</span> SMS ilimitados</li>
+           <li class="flex items-center gap-2"><span class="text-xl">✓</span> Todas las redes sociales</li>
+           <li class="flex items-center gap-2"><span class="text-xl">✓</span> WhatsApp sin límite</li>
+           <li class="flex items-center gap-2"><span class="text-xl">✓</span> Roaming incluido</li>
+          </ul><button onclick="addServiceToCart('plan-45gb', 'Plan Postpago 45 GB', 859)" class="w-full btn-primary bg-white text-claro-red font-bold py-3 rounded-full hover:bg-gray-100 transition-all animate-pulse-glow"> ¡Contratar Ahora! </button>
+         </div>
+        </div><!-- Plan 55GB -->
+        <div class="bg-white rounded-3xl p-8 shadow-lg border-2 border-gray-200 hover:border-claro-red transition-all">
+         <div class="text-center"><span class="inline-block bg-claro-red-light text-white text-sm font-bold px-4 py-1 rounded-full mb-4">DIGITAL PRO</span>
+          <h3 class="font-heading font-bold text-2xl mb-2">Plan 55 GB</h3>
+          <div class="flex items-baseline justify-center gap-1 mb-4"><span class="text-4xl font-heading font-extrabold text-claro-red">L.1,019</span> <span class="text-gray-500">/mes</span>
+          </div>
+          <ul class="text-left space-y-3 mb-8">
+           <li class="flex items-center gap-2"><span class="text-green-500 text-xl">✓</span> 55 GB de navegación</li>
+           <li class="flex items-center gap-2"><span class="text-green-500 text-xl">✓</span> Llamadas ilimitadas</li>
+           <li class="flex items-center gap-2"><span class="text-green-500 text-xl">✓</span> SMS ilimitados</li>
+           <li class="flex items-center gap-2"><span class="text-green-500 text-xl">✓</span> Todas las redes sociales</li>
+           <li class="flex items-center gap-2"><span class="text-green-500 text-xl">✓</span> WhatsApp sin límite</li>
+           <li class="flex items-center gap-2"><span class="text-green-500 text-xl">✓</span> Roaming premium</li>
+           <li class="flex items-center gap-2"><span class="text-green-500 text-xl">✓</span> Claro Video incluido</li>
+          </ul><button onclick="addServiceToCart('plan-55gb', 'Plan Postpago 55 GB', 1019)" class="w-full btn-primary bg-claro-red text-white font-bold py-3 rounded-full hover:bg-claro-red-dark transition-all"> Contratar Ahora </button>
+         </div>
+        </div>
+       </div>
+      </div><!-- Beneficios -->
+      <div class="bg-white rounded-3xl p-8 shadow-lg">
+       <h3 class="font-heading font-bold text-2xl text-center mb-8">✨ Beneficios de Postpago Claro</h3>
+       <div class="grid md:grid-cols-4 gap-6">
+        <div class="text-center">
+         <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-3xl">📶</span>
+         </div>
+         <h4 class="font-bold mb-2">Mejor Cobertura</h4>
+         <p class="text-sm text-gray-600">Red 4G+ en todo Honduras</p>
+        </div>
+        <div class="text-center">
+         <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-3xl">💳</span>
+         </div>
+         <h4 class="font-bold mb-2">Facturación</h4>
+         <p class="text-sm text-gray-600">Paga mensualmente sin sorpresas</p>
+        </div>
+        <div class="text-center">
+         <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-3xl">🎁</span>
+         </div>
+         <h4 class="font-bold mb-2">Promociones</h4>
+         <p class="text-sm text-gray-600">Acceso a ofertas exclusivas</p>
+        </div>
+        <div class="text-center">
+         <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-3xl">🛡️</span>
+         </div>
+         <h4 class="font-bold mb-2">Soporte 24/7</h4>
+         <p class="text-sm text-gray-600">Atención prioritaria siempre</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><!-- ==================== PREPAGO SECTION ==================== -->
+    <section id="section-prepago" class="section hidden py-16 bg-gray-50">
+     <div class="max-w-7xl mx-auto px-4"><!-- Back Button --> <button onclick="navigateTo('home')" class="flex items-center gap-2 text-claro-red font-semibold mb-8 hover:underline">
+       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+       </svg> Volver al Inicio </button>
+      <div class="text-center mb-12">
+       <h1 class="font-heading font-bold text-4xl md:text-5xl text-claro-gray mb-4">Planes <span class="text-claro-red">Prepago</span></h1>
+       <p class="text-gray-600 max-w-2xl mx-auto">Controla tus gastos y recarga cuando quieras. Sin contratos, sin compromisos.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"><!-- Recarga 1 -->
+       <div class="bg-white rounded-2xl p-6 text-center hover:shadow-xl transition-all cursor-pointer border-2 border-gray-200 hover:border-claro-red" onclick="addServiceToCart('recarga-50', 'Recarga Prepago L.50', 50)"><span class="text-5xl mb-4 block">📱</span>
+        <h3 class="font-heading font-bold text-xl mb-2">Recarga L.50</h3>
+        <p class="text-gray-600 text-sm mb-4">• 50 minutos<br>
+         • 100 MB<br>
+         • Válido 7 días</p><span class="inline-block bg-claro-red text-white font-bold py-2 px-6 rounded-full">L.50</span>
+       </div><!-- Recarga 2 -->
+       <div class="bg-white rounded-2xl p-6 text-center hover:shadow-xl transition-all cursor-pointer border-2 border-gray-200 hover:border-claro-red" onclick="addServiceToCart('recarga-100', 'Recarga Prepago L.100', 100)"><span class="text-5xl mb-4 block">💬</span>
+        <h3 class="font-heading font-bold text-xl mb-2">Recarga L.100</h3>
+        <p class="text-gray-600 text-sm mb-4">• 100 minutos<br>
+         • 500 MB<br>
+         • Válido 15 días</p><span class="inline-block bg-claro-red text-white font-bold py-2 px-6 rounded-full">L.100</span>
+       </div><!-- Super Recarga -->
+       <div class="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl p-6 text-center hover:shadow-xl transition-all cursor-pointer transform hover:scale-105" onclick="addServiceToCart('super-recarga-200', 'Super Recarga L.200', 200)"><span class="text-5xl mb-4 block">⭐</span>
+        <h3 class="font-heading font-bold text-xl mb-2 text-gray-900">Super Recarga</h3>
+        <p class="text-gray-800 text-sm mb-4">• Minutos ilimitados<br>
+         • 2 GB + Redes sociales<br>
+         • Válido 30 días</p><span class="inline-block bg-gray-900 text-yellow-400 font-bold py-2 px-6 rounded-full">L.200</span>
+       </div><!-- Mega Recarga -->
+       <div class="bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl p-6 text-white text-center hover:shadow-xl transition-all cursor-pointer transform hover:scale-105" onclick="addServiceToCart('mega-recarga-500', 'Mega Recarga L.500', 500)"><span class="text-5xl mb-4 block">🚀</span>
+        <h3 class="font-heading font-bold text-xl mb-2">Mega Recarga</h3>
+        <p class="text-white/90 text-sm mb-4">• Todo ilimitado<br>
+         • 10 GB + Streaming<br>
+         • Válido 30 días</p><span class="inline-block bg-white text-purple-600 font-bold py-2 px-6 rounded-full">L.500</span>
+       </div>
+      </div><!-- Info Prepago -->
+      <div class="bg-white rounded-3xl p-8 shadow-lg">
+       <h3 class="font-heading font-bold text-2xl text-center mb-8">¿Por qué elegir Prepago?</h3>
+       <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center">
+         <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-3xl">💰</span>
+         </div>
+         <h4 class="font-bold mb-2">Control Total</h4>
+         <p class="text-sm text-gray-600">Tú decides cuánto y cuándo recargar</p>
+        </div>
+        <div class="text-center">
+         <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-3xl">📝</span>
+         </div>
+         <h4 class="font-bold mb-2">Sin Contratos</h4>
+         <p class="text-sm text-gray-600">Libertad sin compromisos ni papeleos</p>
+        </div>
+        <div class="text-center">
+         <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-3xl">⚡</span>
+         </div>
+         <h4 class="font-bold mb-2">Activación Inmediata</h4>
+         <p class="text-sm text-gray-600">Recarga y usa de inmediato</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><!-- ==================== CATALOG SECTION (EQUIPOS) ==================== -->
+    <section id="section-catalog" class="section hidden py-16 bg-gray-50">
+     <div class="max-w-7xl mx-auto px-4"><!-- Back Button --> <button onclick="navigateTo('home')" class="flex items-center gap-2 text-claro-red font-semibold mb-8 hover:underline">
+       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+       </svg> Volver al Inicio </button>
+      <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-8">
+       <div>
+        <h1 class="font-heading font-bold text-4xl text-claro-gray">Catálogo de <span class="text-claro-red">Equipos</span></h1>
+        <p class="text-gray-600 mt-2">Celulares, routers y más</p>
+       </div><!-- Search -->
+       <div class="w-full lg:w-96">
+        <div class="relative"><input type="text" id="search-input" placeholder="Buscar productos..." class="input-field w-full py-3 px-4 pr-12 rounded-full border-2 border-gray-200 focus:border-claro-red transition-all" onkeyup="filterProducts()">
+         <svg class="w-5 h-5 text-gray-400 absolute right-4 top-1/2 transform -translate-y-1/2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+         </svg>
+        </div>
+       </div>
+      </div><!-- Filters -->
+      <div class="bg-white rounded-2xl p-6 mb-8 shadow-sm">
+       <h3 class="font-heading font-bold text-lg mb-4">Filtros</h3>
+       <div class="grid md:grid-cols-4 gap-4">
+        <div><label class="block text-sm font-medium text-gray-700 mb-2">Categoría</label> <select id="filter-category" onchange="filterProducts()" class="input-field w-full py-2 px-3 rounded-lg border-2 border-gray-200 focus:border-claro-red transition-all"> <option value="">Todas</option> <option value="celular">Celulares</option> <option value="router">Routers</option> <option value="accesorio">Accesorios</option> </select>
+        </div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-2">Marca</label> <select id="filter-brand" onchange="filterProducts()" class="input-field w-full py-2 px-3 rounded-lg border-2 border-gray-200 focus:border-claro-red transition-all"> <option value="">Todas</option> <option value="Apple">Apple</option> <option value="Samsung">Samsung</option> <option value="Xiaomi">Xiaomi</option> <option value="Honor">Honor</option> <option value="TP-Link">TP-Link</option> <option value="Universal">Universal</option> </select>
+        </div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-2">Año</label> <select id="filter-year" onchange="filterProducts()" class="input-field w-full py-2 px-3 rounded-lg border-2 border-gray-200 focus:border-claro-red transition-all"> <option value="">Todos</option> <option value="2024">2024</option> <option value="2023">2023</option> </select>
+        </div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-2">Precio</label> <select id="filter-price" onchange="filterProducts()" class="input-field w-full py-2 px-3 rounded-lg border-2 border-gray-200 focus:border-claro-red transition-all"> <option value="">Todos</option> <option value="0-10000">L.0 - L.10,000</option> <option value="10000-25000">L.10,000 - L.25,000</option> <option value="25000+">Más de L.25,000</option> </select>
+        </div>
+       </div>
+      </div><!-- Products Grid -->
+      <div id="products-grid" class="products-grid"><!-- Products will be injected by JS -->
+      </div><!-- No Results -->
+      <div id="no-results" class="hidden text-center py-16"><span class="text-6xl mb-4 block">🔍</span>
+       <h3 class="font-heading font-bold text-2xl text-gray-600 mb-2">No se encontraron productos</h3>
+       <p class="text-gray-500">Intenta con otros filtros</p>
+      </div>
+     </div>
+    </section><!-- ==================== CLARO HOGAR SECTION ==================== -->
+    <section id="section-claro-hogar" class="section hidden py-16 bg-gray-50">
+     <div class="max-w-7xl mx-auto px-4"><!-- Back Button --> <button onclick="navigateTo('home')" class="flex items-center gap-2 text-claro-red font-semibold mb-8 hover:underline">
+       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+       </svg> Volver al Inicio </button> <!-- Hero -->
+      <div class="bg-gradient-to-r from-claro-red to-claro-red-dark rounded-3xl p-8 md:p-12 text-white mb-12">
+       <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div><span class="inline-block bg-white/20 text-sm font-bold px-4 py-1 rounded-full mb-4">🏡 SERVICIOS RESIDENCIALES</span>
+         <h1 class="font-heading font-bold text-4xl md:text-5xl mb-4">Claro Hogar</h1>
+         <p class="text-white/90 text-lg mb-6">Internet de fibra óptica, TV HD y telefonía fija. Todo lo que tu hogar necesita.</p><button onclick="openWhatsAppGeneral()" class="btn-primary bg-white text-claro-red font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition-all"> Contratar Ahora </button>
+        </div>
+        <div class="text-center"><span class="text-9xl">🏠</span>
+        </div>
+       </div>
+      </div><!-- Servicios Fijos -->
+      <div class="mb-12">
+       <h2 class="font-heading font-bold text-3xl text-center text-claro-gray mb-8">Servicios <span class="text-claro-red">Fijos</span></h2>
+       <div class="grid md:grid-cols-3 gap-8"><!-- Internet Residencial -->
+        <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all">
+         <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4"><span class="text-3xl">🌐</span>
+         </div>
+         <h3 class="font-heading font-bold text-xl mb-3">Internet Residencial</h3>
+         <p class="text-gray-600 mb-4">Conexión de fibra óptica desde 50 Mbps hasta 200 Mbps.</p>
+         <ul class="space-y-2 text-sm text-gray-600 mb-6">
+          <li>✓ Velocidad garantizada</li>
+          <li>✓ Router WiFi incluido</li>
+          <li>✓ Sin límite de descarga</li>
+         </ul>
+         <p class="text-2xl font-heading font-extrabold text-claro-red mb-4">Desde L.599/mes</p><button onclick="addServiceToCart('internet-residencial', 'Internet Residencial Fibra', 599)" class="w-full bg-claro-red text-white font-bold py-2 rounded-full hover:bg-claro-red-dark transition-all"> Contratar </button>
+        </div><!-- Instalación -->
+        <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all">
+         <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4"><span class="text-3xl">🔧</span>
+         </div>
+         <h3 class="font-heading font-bold text-xl mb-3">Instalación Profesional</h3>
+         <p class="text-gray-600 mb-4">Técnicos certificados instalan tu servicio en 24-48 horas.</p>
+         <ul class="space-y-2 text-sm text-gray-600 mb-6">
+          <li>✓ Visita técnica gratuita</li>
+          <li>✓ Instalación incluida</li>
+          <li>✓ Configuración completa</li>
+         </ul>
+         <p class="text-2xl font-heading font-extrabold text-green-600 mb-4">GRATIS</p><button onclick="openWhatsAppGeneral()" class="w-full bg-green-600 text-white font-bold py-2 rounded-full hover:bg-green-700 transition-all"> Agendar </button>
+        </div><!-- Soporte -->
+        <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all">
+         <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4"><span class="text-3xl">🛡️</span>
+         </div>
+         <h3 class="font-heading font-bold text-xl mb-3">Soporte 24/7</h3>
+         <p class="text-gray-600 mb-4">Asistencia técnica disponible todos los días, a toda hora.</p>
+         <ul class="space-y-2 text-sm text-gray-600 mb-6">
+          <li>✓ Línea directa de soporte</li>
+          <li>✓ Chat en línea</li>
+          <li>✓ Visitas técnicas incluidas</li>
+         </ul>
+         <p class="text-2xl font-heading font-extrabold text-purple-600 mb-4">INCLUIDO</p><button onclick="navigateTo('soporte')" class="w-full bg-purple-600 text-white font-bold py-2 rounded-full hover:bg-purple-700 transition-all"> Ver Soporte </button>
+        </div>
+       </div>
+      </div><!-- Planes Internet -->
+      <div class="mb-12">
+       <h2 class="font-heading font-bold text-3xl text-center mb-8">Planes de <span class="text-claro-red">Internet Fibra</span></h2>
+       <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
+         <h3 class="font-heading font-bold text-xl mb-2">Fibra 100 Mbps</h3>
+         <p class="text-3xl font-heading font-extrabold text-claro-red mb-4">L.899<span class="text-sm text-gray-500">/mes</span></p><button onclick="addServiceToCart('fibra-100', 'Internet Fibra 100 Mbps', 899)" class="w-full bg-claro-red text-white font-bold py-2 rounded-full hover:bg-claro-red-dark">Contratar</button>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow-lg text-center border-2 border-claro-red"><span class="inline-block bg-claro-red text-white text-xs font-bold px-3 py-1 rounded-full mb-2">RECOMENDADO</span>
+         <h3 class="font-heading font-bold text-xl mb-2">Fibra 150 Mbps</h3>
+         <p class="text-3xl font-heading font-extrabold text-claro-red mb-4">L.1,099<span class="text-sm text-gray-500">/mes</span></p><button onclick="addServiceToCart('fibra-150', 'Internet Fibra 150 Mbps', 1099)" class="w-full bg-claro-red text-white font-bold py-2 rounded-full hover:bg-claro-red-dark">Contratar</button>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
+         <h3 class="font-heading font-bold text-xl mb-2">Fibra 200 Mbps</h3>
+         <p class="text-3xl font-heading font-extrabold text-claro-red mb-4">L.1,299<span class="text-sm text-gray-500">/mes</span></p><button onclick="addServiceToCart('fibra-200', 'Internet Fibra 200 Mbps', 1299)" class="w-full bg-claro-red text-white font-bold py-2 rounded-full hover:bg-claro-red-dark">Contratar</button>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><!-- ==================== ACCESORIOS SECTION ==================== -->
+    <section id="section-accesorios" class="section hidden py-16 bg-gray-50">
+     <div class="max-w-7xl mx-auto px-4"><!-- Back Button --> <button onclick="navigateTo('home')" class="flex items-center gap-2 text-claro-red font-semibold mb-8 hover:underline">
+       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+       </svg> Volver al Inicio </button>
+      <div class="text-center mb-12">
+       <h1 class="font-heading font-bold text-4xl md:text-5xl text-claro-gray mb-4"><span class="text-claro-red">Accesorios</span> Premium</h1>
+       <p class="text-gray-600 max-w-2xl mx-auto">Audífonos, relojes inteligentes, cargadores, fundas y más para complementar tu experiencia móvil</p>
+      </div><!-- Audífonos -->
+      <div class="mb-12">
+       <h2 class="font-heading font-bold text-2xl mb-6 text-claro-gray">🎧 Audífonos</h2>
+       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg">
+         <div class="relative overflow-hidden bg-gray-100 p-6 h-48 flex items-center justify-center"><span class="text-8xl">🎧</span>
+         </div>
+         <div class="p-5">
+          <p class="text-xs text-gray-500 uppercase mb-1">Apple</p>
+          <h3 class="font-heading font-bold text-lg mb-2">AirPods Pro (2da Gen)</h3>
+          <p class="text-gray-600 text-sm mb-4">Cancelación de ruido activa, audio espacial</p>
+          <div class="flex items-center justify-between"><span class="font-heading font-extrabold text-xl text-claro-red">L.6,999</span> <button onclick="addToCart('airpods-pro')" class="btn-primary bg-claro-red text-white font-bold py-2 px-4 rounded-full hover:bg-claro-red-dark transition-all text-sm"> Agregar </button>
+          </div>
+         </div>
+        </div>
+        <div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg">
+         <div class="relative overflow-hidden bg-gray-100 p-6 h-48 flex items-center justify-center"><span class="text-8xl">🎧</span>
+         </div>
+         <div class="p-5">
+          <p class="text-xs text-gray-500 uppercase mb-1">Apple</p>
+          <h3 class="font-heading font-bold text-lg mb-2">AirPods (3ra Gen)</h3>
+          <p class="text-gray-600 text-sm mb-4">Audio espacial, resistentes al agua</p>
+          <div class="flex items-center justify-between"><span class="font-heading font-extrabold text-xl text-claro-red">L.4,999</span> <button onclick="addToCart('airpods-3')" class="btn-primary bg-claro-red text-white font-bold py-2 px-4 rounded-full hover:bg-claro-red-dark transition-all text-sm"> Agregar </button>
+          </div>
+         </div>
+        </div>
+        <div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg">
+         <div class="relative overflow-hidden bg-gray-100 p-6 h-48 flex items-center justify-center"><span class="text-8xl">🎵</span>
+         </div>
+         <div class="p-5">
+          <p class="text-xs text-gray-500 uppercase mb-1">Samsung</p>
+          <h3 class="font-heading font-bold text-lg mb-2">Galaxy Buds2 Pro</h3>
+          <p class="text-gray-600 text-sm mb-4">Sonido Hi-Fi 360, ANC inteligente</p>
+          <div class="flex items-center justify-between"><span class="font-heading font-extrabold text-xl text-claro-red">L.4,999</span> <button onclick="addToCart('galaxy-buds2-pro')" class="btn-primary bg-claro-red text-white font-bold py-2 px-4 rounded-full hover:bg-claro-red-dark transition-all text-sm"> Agregar </button>
+          </div>
+         </div>
+        </div>
+        <div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg">
+         <div class="relative overflow-hidden bg-gray-100 p-6 h-48 flex items-center justify-center"><span class="text-8xl">🎵</span>
+         </div>
+         <div class="p-5">
+          <p class="text-xs text-gray-500 uppercase mb-1">Samsung</p>
+          <h3 class="font-heading font-bold text-lg mb-2">Galaxy Buds FE</h3>
+          <p class="text-gray-600 text-sm mb-4">Sonido premium, diseño ergonómico</p>
+          <div class="flex items-center justify-between"><span class="font-heading font-extrabold text-xl text-claro-red">L.2,999</span> <button onclick="addToCart('galaxy-buds-fe')" class="btn-primary bg-claro-red text-white font-bold py-2 px-4 rounded-full hover:bg-claro-red-dark transition-all text-sm"> Agregar </button>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Relojes -->
+      <div class="mb-12">
+       <h2 class="font-heading font-bold text-2xl mb-6 text-claro-gray">⌚ Relojes Inteligentes</h2>
+       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg">
+         <div class="relative overflow-hidden bg-gray-100 p-6 h-48 flex items-center justify-center"><span class="text-8xl">⌚</span>
+         </div>
+         <div class="p-5">
+          <p class="text-xs text-gray-500 uppercase mb-1">Apple</p>
+          <h3 class="font-heading font-bold text-lg mb-2">Apple Watch Series 9</h3>
+          <p class="text-gray-600 text-sm mb-4">45mm, GPS, monitor salud avanzado</p>
+          <div class="flex items-center justify-between"><span class="font-heading font-extrabold text-xl text-claro-red">L.12,999</span> <button onclick="addToCart('apple-watch-9')" class="btn-primary bg-claro-red text-white font-bold py-2 px-4 rounded-full hover:bg-claro-red-dark transition-all text-sm"> Agregar </button>
+          </div>
+         </div>
+        </div>
+        <div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg">
+         <div class="relative overflow-hidden bg-gray-100 p-6 h-48 flex items-center justify-center"><span class="text-8xl">⌚</span>
+         </div>
+         <div class="p-5">
+          <p class="text-xs text-gray-500 uppercase mb-1">Apple</p>
+          <h3 class="font-heading font-bold text-lg mb-2">Apple Watch SE</h3>
+          <p class="text-gray-600 text-sm mb-4">40mm, GPS, fitness tracking</p>
+          <div class="flex items-center justify-between"><span class="font-heading font-extrabold text-xl text-claro-red">L.8,999</span> <button onclick="addToCart('apple-watch-se')" class="btn-primary bg-claro-red text-white font-bold py-2 px-4 rounded-full hover:bg-claro-red-dark transition-all text-sm"> Agregar </button>
+          </div>
+         </div>
+        </div>
+        <div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg">
+         <div class="relative overflow-hidden bg-gray-100 p-6 h-48 flex items-center justify-center"><span class="text-8xl">⏱️</span>
+         </div>
+         <div class="p-5">
+          <p class="text-xs text-gray-500 uppercase mb-1">Samsung</p>
+          <h3 class="font-heading font-bold text-lg mb-2">Galaxy Watch 6</h3>
+          <p class="text-gray-600 text-sm mb-4">44mm, monitoreo deportivo premium</p>
+          <div class="flex items-center justify-between"><span class="font-heading font-extrabold text-xl text-claro-red">L.8,999</span> <button onclick="addToCart('galaxy-watch-6')" class="btn-primary bg-claro-red text-white font-bold py-2 px-4 rounded-full hover:bg-claro-red-dark transition-all text-sm"> Agregar </button>
+          </div>
+         </div>
+        </div>
+        <div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg">
+         <div class="relative overflow-hidden bg-gray-100 p-6 h-48 flex items-center justify-center"><span class="text-8xl">⏱️</span>
+         </div>
+         <div class="p-5">
+          <p class="text-xs text-gray-500 uppercase mb-1">Samsung</p>
+          <h3 class="font-heading font-bold text-lg mb-2">Galaxy Watch 6 Classic</h3>
+          <p class="text-gray-600 text-sm mb-4">47mm, bisel giratorio, elegante</p>
+          <div class="flex items-center justify-between"><span class="font-heading font-extrabold text-xl text-claro-red">L.10,999</span> <button onclick="addToCart('galaxy-watch-6-classic')" class="btn-primary bg-claro-red text-white font-bold py-2 px-4 rounded-full hover:bg-claro-red-dark transition-all text-sm"> Agregar </button>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Cargadores y Cables -->
+      <div class="mb-12">
+       <h2 class="font-heading font-bold text-2xl mb-6 text-claro-gray">🔌 Cargadores y Cables</h2>
+       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg">
+         <div class="relative overflow-hidden bg-gray-100 p-6 h-48 flex items-center justify-center"><span class="text-8xl">🔌</span>
+         </div>
+         <div class="p-5">
+          <p class="text-xs text-gray-500 uppercase mb-1">Apple</p>
+          <h3 class="font-heading font-bold text-lg mb-2">Cargador Rápido USB-C 20W</h3>
+          <p class="text-gray-600 text-sm mb-4">Original Apple, carga rápida</p>
+          <div class="flex items-center justify-between"><span class="font-heading font-extrabold text-xl text-claro-red">L.799</span> <button onclick="addToCart('cargador-rapido-apple')" class="btn-primary bg-claro-red text-white font-bold py-2 px-4 rounded-full hover:bg-claro-red-dark transition-all text-sm"> Agregar </button>
+          </div>
+         </div>
+        </div>
+        <div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg">
+         <div class="relative overflow-hidden bg-gray-100 p-6 h-48 flex items-center justify-center"><span class="text-8xl">🔌</span>
+         </div>
+         <div class="p-5">
+          <p class="text-xs text-gray-500 uppercase mb-1">Samsung</p>
+          <h3 class="font-heading font-bold text-lg mb-2">Cargador Super Rápido 45W</h3>
+          <p class="text-gray-600 text-sm mb-4">Original Samsung, USB-C</p>
+          <div class="flex items-center justify-between"><span class="font-heading font-extrabold text-xl text-claro-red">L.999</span> <button onclick="addToCart('cargador-samsung-45w')" class="btn-primary bg-claro-red text-white font-bold py-2 px-4 rounded-full hover:bg-claro-red-dark transition-all text-sm"> Agregar </button>
+          </div>
+         </div>
+        </div>
+        <div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg">
+         <div class="relative overflow-hidden bg-gray-100 p-6 h-48 flex items-center justify-center"><span class="text-8xl">🔌</span>
+         </div>
+         <div class="p-5">
+          <p class="text-xs text-gray-500 uppercase mb-1">Apple</p>
+          <h3 class="font-heading font-bold text-lg mb-2">Cable USB-C a Lightning 1m</h3>
+          <p class="text-gray-600 text-sm mb-4">Original Apple, resistente</p>
+          <div class="flex items-center justify-between"><span class="font-heading font-extrabold text-xl text-claro-red">L.599</span> <button onclick="addToCart('cable-usbc-apple')" class="btn-primary bg-claro-red text-white font-bold py-2 px-4 rounded-full hover:bg-claro-red-dark transition-all text-sm"> Agregar </button>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Fundas y Protección -->
+      <div class="mb-12">
+       <h2 class="font-heading font-bold text-2xl mb-6 text-claro-gray">🛡️ Fundas y Protección</h2>
+       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg">
+         <div class="relative overflow-hidden bg-gray-100 p-6 h-48 flex items-center justify-center"><span class="text-8xl">📱</span>
+         </div>
+         <div class="p-5">
+          <p class="text-xs text-gray-500 uppercase mb-1">Apple</p>
+          <h3 class="font-heading font-bold text-lg mb-2">Funda Silicona iPhone 15</h3>
+          <p class="text-gray-600 text-sm mb-4">Varios colores, MagSafe compatible</p>
+          <div class="flex items-center justify-between"><span class="font-heading font-extrabold text-xl text-claro-red">L.1,299</span> <button onclick="addToCart('funda-iphone-15')" class="btn-primary bg-claro-red text-white font-bold py-2 px-4 rounded-full hover:bg-claro-red-dark transition-all text-sm"> Agregar </button>
+          </div>
+         </div>
+        </div>
+        <div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg">
+         <div class="relative overflow-hidden bg-gray-100 p-6 h-48 flex items-center justify-center"><span class="text-8xl">📱</span>
+         </div>
+         <div class="p-5">
+          <p class="text-xs text-gray-500 uppercase mb-1">Samsung</p>
+          <h3 class="font-heading font-bold text-lg mb-2">Funda Protective Samsung S25</h3>
+          <p class="text-gray-600 text-sm mb-4">Protección militar, transparente</p>
+          <div class="flex items-center justify-between"><span class="font-heading font-extrabold text-xl text-claro-red">L.999</span> <button onclick="addToCart('funda-samsung-s25')" class="btn-primary bg-claro-red text-white font-bold py-2 px-4 rounded-full hover:bg-claro-red-dark transition-all text-sm"> Agregar </button>
+          </div>
+         </div>
+        </div>
+        <div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg">
+         <div class="relative overflow-hidden bg-gray-100 p-6 h-48 flex items-center justify-center"><span class="text-8xl">🛡️</span>
+         </div>
+         <div class="p-5">
+          <p class="text-xs text-gray-500 uppercase mb-1">Universal</p>
+          <h3 class="font-heading font-bold text-lg mb-2">Protector Pantalla Vidrio</h3>
+          <p class="text-gray-600 text-sm mb-4">Anti-rayones, ultra transparente</p>
+          <div class="flex items-center justify-between"><span class="font-heading font-extrabold text-xl text-claro-red">L.399</span> <button onclick="addToCart('protector-pantalla')" class="btn-primary bg-claro-red text-white font-bold py-2 px-4 rounded-full hover:bg-claro-red-dark transition-all text-sm"> Agregar </button>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><!-- ==================== RECARGAS SECTION ==================== -->
+    <section id="section-recargas" class="section hidden py-16 bg-gradient-to-br from-claro-red to-claro-red-dark text-white">
+     <div class="max-w-7xl mx-auto px-4"><!-- Back Button --> <button onclick="navigateTo('home')" class="flex items-center gap-2 text-white font-semibold mb-8 hover:underline">
+       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+       </svg> Volver al Inicio </button>
+      <div class="text-center mb-12">
+       <h1 class="font-heading font-bold text-4xl md:text-5xl mb-4">Recargas <span class="text-yellow-300">Claro</span></h1>
+       <p class="text-white/80 max-w-2xl mx-auto">Recarga tu línea al instante y mantente siempre conectado</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+       <div class="bg-white/10 backdrop-blur rounded-2xl p-6 text-center hover:bg-white/20 transition-all cursor-pointer" onclick="addServiceToCart('recarga-50-r', 'Recarga L.50', 50)"><span class="text-5xl mb-4 block">📱</span>
+        <h3 class="font-heading font-bold text-xl mb-2">L.50</h3>
+        <p class="text-white/70 text-sm mb-4">50 min + 100 MB</p><span class="inline-block bg-white text-claro-red font-bold py-2 px-6 rounded-full">Recargar</span>
+       </div>
+       <div class="bg-white/10 backdrop-blur rounded-2xl p-6 text-center hover:bg-white/20 transition-all cursor-pointer" onclick="addServiceToCart('recarga-100-r', 'Recarga L.100', 100)"><span class="text-5xl mb-4 block">💬</span>
+        <h3 class="font-heading font-bold text-xl mb-2">L.100</h3>
+        <p class="text-white/70 text-sm mb-4">100 min + 500 MB</p><span class="inline-block bg-white text-claro-red font-bold py-2 px-6 rounded-full">Recargar</span>
+       </div>
+       <div class="bg-yellow-400 text-gray-900 rounded-2xl p-6 text-center hover:bg-yellow-300 transition-all cursor-pointer" onclick="addServiceToCart('recarga-200-r', 'Super Recarga L.200', 200)"><span class="text-5xl mb-4 block">⭐</span>
+        <h3 class="font-heading font-bold text-xl mb-2">L.200</h3>
+        <p class="text-gray-700 text-sm mb-4">Ilimitado + 2 GB</p><span class="inline-block bg-gray-900 text-yellow-400 font-bold py-2 px-6 rounded-full">Recargar</span>
+       </div>
+       <div class="bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl p-6 text-center hover:from-purple-400 hover:to-pink-400 transition-all cursor-pointer" onclick="addServiceToCart('recarga-500-r', 'Mega Recarga L.500', 500)"><span class="text-5xl mb-4 block">🚀</span>
+        <h3 class="font-heading font-bold text-xl mb-2">L.500</h3>
+        <p class="text-white/90 text-sm mb-4">Todo ilimitado + 10 GB</p><span class="inline-block bg-white text-purple-600 font-bold py-2 px-6 rounded-full">Recargar</span>
+       </div>
+      </div>
+      <div class="mt-12 bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
+       <h3 class="font-heading font-bold text-2xl mb-4">¿Necesitas ayuda?</h3>
+       <p class="mb-6">Contacta con nosotros por WhatsApp para realizar tu recarga</p><button onclick="openWhatsAppGeneral()" class="bg-green-500 text-white font-bold py-3 px-8 rounded-full hover:bg-green-600 transition-all inline-flex items-center gap-2">
+        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg> Chatear por WhatsApp </button>
+      </div>
+     </div>
+    </section><!-- ==================== CLARO TV SECTION ==================== -->
+    <section id="section-claro-tv" class="section hidden py-16 bg-gray-50">
+     <div class="max-w-7xl mx-auto px-4"><!-- Back Button --> <button onclick="navigateTo('home')" class="flex items-center gap-2 text-claro-red font-semibold mb-8 hover:underline">
+       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+       </svg> Volver al Inicio </button>
+      <div class="bg-gradient-to-br from-purple-600 to-pink-600 rounded-3xl p-8 md:p-12 text-white mb-12">
+       <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+         <h1 class="font-heading font-bold text-4xl md:text-5xl mb-4">Claro TV</h1>
+         <p class="text-white/90 text-lg mb-6">Entretenimiento en HD para toda la familia. Más de 150 canales, películas, series y deportes en vivo.</p><button onclick="addServiceToCart('claro-tv-hd', 'Claro TV HD', 399)" class="btn-primary bg-white text-purple-600 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition-all"> Contratar desde L.399/mes </button>
+        </div>
+        <div class="text-center"><span class="text-9xl">📺</span>
+        </div>
+       </div>
+      </div><!-- Claro Video -->
+      <div class="grid md:grid-cols-2 gap-8 mb-12">
+       <div class="bg-white rounded-2xl p-8 shadow-lg">
+        <div class="flex items-center gap-4 mb-6">
+         <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center"><span class="text-3xl">🎬</span>
+         </div>
+         <div>
+          <h3 class="font-heading font-bold text-xl">Claro Video</h3>
+          <p class="text-gray-600">Streaming ilimitado</p>
+         </div>
+        </div>
+        <ul class="space-y-3 mb-6">
+         <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Miles de películas y series</li>
+         <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Contenido original</li>
+         <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Disponible en todos tus dispositivos</li>
+         <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Sin publicidad</li>
+        </ul>
+        <div class="flex justify-between items-center"><span class="text-2xl font-heading font-extrabold text-claro-red">L.199<span class="text-sm text-gray-500">/mes</span></span> <button onclick="addServiceToCart('claro-video', 'Claro Video Streaming', 199)" class="bg-claro-red text-white font-bold py-2 px-6 rounded-full hover:bg-claro-red-dark transition-all"> Suscribirse </button>
+        </div>
+       </div>
+       <div class="bg-white rounded-2xl p-8 shadow-lg">
+        <div class="flex items-center gap-4 mb-6">
+         <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center"><span class="text-3xl">📡</span>
+         </div>
+         <div>
+          <h3 class="font-heading font-bold text-xl">Claro TV HD</h3>
+          <p class="text-gray-600">150+ canales HD</p>
+         </div>
+        </div>
+        <ul class="space-y-3 mb-6">
+         <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Canales HD incluidos</li>
+         <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Deportes en vivo</li>
+         <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Decodificador incluido</li>
+         <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Grabación de programas</li>
+        </ul>
+        <div class="flex justify-between items-center"><span class="text-2xl font-heading font-extrabold text-claro-red">L.399<span class="text-sm text-gray-500">/mes</span></span> <button onclick="addServiceToCart('claro-tv-hd', 'Claro TV HD 150 canales', 399)" class="bg-claro-red text-white font-bold py-2 px-6 rounded-full hover:bg-claro-red-dark transition-all"> Contratar </button>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><!-- ==================== SOPORTE SECTION ==================== -->
+    <section id="section-soporte" class="section hidden py-16">
+     <div class="max-w-7xl mx-auto px-4"><!-- Back Button --> <button onclick="navigateTo('home')" class="flex items-center gap-2 text-claro-red font-semibold mb-8 hover:underline">
+       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+       </svg> Volver al Inicio </button>
+      <div class="text-center mb-12">
+       <h1 class="font-heading font-bold text-4xl md:text-5xl text-claro-gray mb-4">Soporte y <span class="text-claro-red">Atención al Cliente</span></h1>
+       <p class="text-gray-600 max-w-2xl mx-auto">Estamos aquí para ayudarte 24/7. Elige el canal que prefieras.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"><button onclick="openWhatsAppGeneral()" class="bg-green-500 text-white rounded-2xl p-8 text-center hover:bg-green-600 transition-all"> <span class="text-5xl block mb-4">💬</span> <h3 class="font-heading font-bold text-xl mb-2">WhatsApp</h3><p class="text-white/90 text-sm">Respuesta inmediata</p></button> <a href="tel:+50497422946" class="bg-blue-500 text-white rounded-2xl p-8 text-center hover:bg-blue-600 transition-all block"> <span class="text-5xl block mb-4">📞</span> <h3 class="font-heading font-bold text-xl mb-2">Llamar</h3><p class="text-white/90 text-sm">+504 9742-2946</p></a> <a href="mailto:info@clarohn.com" class="bg-purple-500 text-white rounded-2xl p-8 text-center hover:bg-purple-600 transition-all block"> <span class="text-5xl block mb-4">📧</span> <h3 class="font-heading font-bold text-xl mb-2">Email</h3><p class="text-white/90 text-sm">info@clarohn.com</p></a>
+       <div class="bg-orange-500 text-white rounded-2xl p-8 text-center hover:bg-orange-600 transition-all cursor-pointer"><span class="text-5xl block mb-4">💬</span>
+        <h3 class="font-heading font-bold text-xl mb-2">Chat en Vivo</h3>
+        <p class="text-white/90 text-sm">Pronto disponible</p>
+       </div>
+      </div><!-- FAQ -->
+      <div class="bg-white rounded-3xl p-8 shadow-lg">
+       <h2 class="font-heading font-bold text-2xl text-center mb-8">Preguntas Frecuentes</h2>
+       <div class="space-y-4">
+        <details class="bg-gray-50 rounded-xl p-4"><summary class="font-bold cursor-pointer">¿Cómo puedo contratar un plan?</summary>
+         <p class="mt-2 text-gray-600">Puedes contratar directamente desde la web agregando al carrito y contactándonos por WhatsApp, o llamando al +504 9742-2946.</p>
+        </details>
+        <details class="bg-gray-50 rounded-xl p-4"><summary class="font-bold cursor-pointer">¿Cuánto tarda la instalación?</summary>
+         <p class="mt-2 text-gray-600">Normalmente entre 24 a 48 horas hábiles después de contratar el servicio.</p>
+        </details>
+        <details class="bg-gray-50 rounded-xl p-4"><summary class="font-bold cursor-pointer">¿Los celulares tienen garantía?</summary>
+         <p class="mt-2 text-gray-600">Sí, todos nuestros equipos tienen garantía de fábrica de 12 meses.</p>
+        </details>
+        <details class="bg-gray-50 rounded-xl p-4"><summary class="font-bold cursor-pointer">¿Hacen envíos a todo Honduras?</summary>
+         <p class="mt-2 text-gray-600">Sí, realizamos envíos a los 18 departamentos de Honduras.</p>
+        </details>
+       </div>
+      </div>
+     </div>
+    </section><!-- ==================== CART SECTION ==================== -->
+    <section id="section-cart" class="section hidden py-16 bg-gray-50">
+     <div class="max-w-4xl mx-auto px-4"><!-- Back Button --> <button onclick="navigateTo('home')" class="flex items-center gap-2 text-claro-red font-semibold mb-8 hover:underline">
+       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+       </svg> Volver al Inicio </button>
+      <h1 class="font-heading font-bold text-4xl text-claro-gray mb-8">Mi <span class="text-claro-red">Carrito</span></h1><!-- Cart Empty State -->
+      <div id="cart-empty" class="hidden bg-white rounded-2xl p-12 text-center shadow-lg"><span class="text-8xl mb-6 block">🛒</span>
+       <h2 class="font-heading font-bold text-2xl text-gray-600 mb-4">Tu carrito está vacío</h2>
+       <p class="text-gray-500 mb-8">Agrega productos o servicios para comenzar</p><button onclick="navigateTo('catalog')" class="btn-primary bg-claro-red text-white font-bold py-3 px-8 rounded-full hover:bg-claro-red-dark transition-all"> Ver Catálogo </button>
+      </div><!-- Cart Items -->
+      <div id="cart-items" class="space-y-4 mb-8"><!-- Items will be injected by JS -->
+      </div><!-- Cart Summary -->
+      <div id="cart-summary" class="hidden bg-white rounded-2xl p-8 shadow-lg">
+       <h2 class="font-heading font-bold text-xl mb-6">Resumen del pedido</h2>
+       <div class="space-y-3 mb-6">
+        <div class="flex justify-between"><span class="text-gray-600">Subtotal</span> <span id="cart-subtotal" class="font-semibold">L.0</span>
+        </div>
+        <div class="flex justify-between text-sm"><span class="text-gray-500">Envío</span> <span class="text-green-600">A coordinar</span>
+        </div>
+        <hr>
+        <div class="flex justify-between text-lg"><span class="font-bold">Total referencial</span> <span id="cart-total" class="font-heading font-extrabold text-claro-red">L.0</span>
+        </div>
+       </div>
+       <p class="text-sm text-gray-500 mb-6">* Los precios son referenciales. El precio final será confirmado por nuestro equipo de ventas.</p><button onclick="finalizeOrder()" class="w-full btn-primary bg-green-500 text-white font-bold py-4 rounded-full hover:bg-green-600 transition-all flex items-center justify-center gap-2 animate-pulse-glow">
+        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg> Finalizar Pedido por WhatsApp </button> <button onclick="clearCart()" class="w-full mt-4 text-gray-500 hover:text-claro-red font-medium py-2 transition-colors"> Vaciar carrito </button>
+      </div>
+     </div>
+    </section>
+   </main><!-- ==================== FOOTER ==================== -->
+   <footer class="bg-gray-900 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4">
+     <div class="grid md:grid-cols-4 gap-8 mb-12"><!-- Logo & About -->
+      <div>
+       <div class="flex items-center gap-2 mb-4">
+        <svg class="w-10 h-10" viewbox="0 0 60 60"><circle cx="30" cy="30" r="28" fill="#DA291C" /> <text x="30" y="38" font-family="Montserrat" font-size="18" font-weight="800" fill="white" text-anchor="middle">
+          C
+         </text>
+        </svg><span class="font-heading font-bold text-xl">Claro Honduras</span>
+       </div>
+       <p class="text-gray-400 text-sm mb-4">Tu mejor conexión en Honduras.</p>
+       <div class="flex items-center gap-2">
+        <svg class="w-8 h-5" viewbox="0 0 36 24"><rect width="36" height="8" fill="#00BCE4" /> <rect y="8" width="36" height="8" fill="#FFFFFF" /> <rect y="16" width="36" height="8" fill="#00BCE4" />
+        </svg><span class="text-sm text-gray-400">🇭🇳 Honduras</span>
+       </div>
+      </div><!-- Quick Links -->
+      <div>
+       <h3 class="font-heading font-bold text-lg mb-4">Enlaces</h3>
+       <ul class="space-y-2 text-gray-400">
+        <li><a href="#" onclick="navigateTo('home'); return false;" class="hover:text-white transition-colors">Inicio</a></li>
+        <li><a href="#" onclick="navigateTo('postpago'); return false;" class="hover:text-white transition-colors">Postpago</a></li>
+        <li><a href="#" onclick="navigateTo('prepago'); return false;" class="hover:text-white transition-colors">Prepago</a></li>
+        <li><a href="#" onclick="navigateTo('claro-hogar'); return false;" class="hover:text-white transition-colors">Claro Hogar</a></li>
+       </ul>
+      </div><!-- Services -->
+      <div>
+       <h3 class="font-heading font-bold text-lg mb-4">Servicios</h3>
+       <ul class="space-y-2 text-gray-400">
+        <li><a href="#" onclick="navigateTo('catalog'); return false;" class="hover:text-white transition-colors">Equipos</a></li>
+        <li><a href="#" onclick="navigateTo('accesorios'); return false;" class="hover:text-white transition-colors">Accesorios</a></li>
+        <li><a href="#" onclick="navigateTo('recargas'); return false;" class="hover:text-white transition-colors">Recargas</a></li>
+        <li><a href="#" onclick="navigateTo('claro-tv'); return false;" class="hover:text-white transition-colors">Claro TV</a></li>
+       </ul>
+      </div><!-- Contact -->
+      <div>
+       <h3 class="font-heading font-bold text-lg mb-4">Contacto</h3>
+       <ul class="space-y-3 text-gray-400">
+        <li class="flex items-center gap-2"><span>📞</span> +504 9742-2946</li>
+        <li class="flex items-center gap-2"><span>📧</span> info@clarohn.com</li>
+        <li class="flex items-center gap-2"><span>📍</span> Tegucigalpa, Honduras</li>
+       </ul>
+      </div>
+     </div>
+     <hr class="border-gray-800 mb-8">
+     <div class="text-center text-sm text-gray-500">
+      <p>© 2024 Claro Honduras. Todos los derechos reservados.</p>
+     </div>
+    </div>
+   </footer><!-- ==================== FLOATING WHATSAPP BUTTON ==================== --> <button onclick="openWhatsAppGeneral()" class="whatsapp-float w-16 h-16 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-all hover:scale-110">
+    <svg class="w-8 h-8 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg></button> <!-- ==================== TOAST NOTIFICATIONS ==================== -->
+   <div id="toast-container" class="fixed top-24 right-4 z-50 space-y-2"><!-- Toasts will be injected here -->
+   </div>
+  </div>
+  <script>
+        // ==================== CONFIGURATION ====================
+        const defaultConfig = {
+            hero_title: 'PÁSATE AL FUTURO',
+            hero_subtitle: 'PÁSATE A CLARO FIBRA',
+            whatsapp_number: '+50497422946',
+            primary_color: '#DA291C',
+            secondary_color: '#FFFFFF',
+            text_color: '#424242'
+        };
+        
+        let config = { ...defaultConfig };
+        
+        // ==================== PRODUCTS DATABASE ====================
+        const products = [
+            // iPhone 14 Series
+            {
+                id: 'iphone-14',
+                name: 'iPhone 14',
+                brand: 'Apple',
+                category: 'celular',
+                year: 2023,
+                price: 24999,
+                description: '128GB, Azul, A15 Bionic',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'iphone-14-plus',
+                name: 'iPhone 14 Plus',
+                brand: 'Apple',
+                category: 'celular',
+                year: 2023,
+                price: 27999,
+                description: '256GB, Medianoche, Pantalla 6.7"',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'iphone-14-pro',
+                name: 'iPhone 14 Pro',
+                brand: 'Apple',
+                category: 'celular',
+                year: 2023,
+                price: 29999,
+                description: '256GB, Púrpura Profundo, A16 Bionic',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'iphone-14-pro-max',
+                name: 'iPhone 14 Pro Max',
+                brand: 'Apple',
+                category: 'celular',
+                year: 2023,
+                price: 34999,
+                description: '512GB, Oro, Dynamic Island',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            
+            // iPhone 15 Series
+            {
+                id: 'iphone-15',
+                name: 'iPhone 15',
+                brand: 'Apple',
+                category: 'celular',
+                year: 2024,
+                price: 26999,
+                description: '128GB, Rosa, A16 Bionic',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'iphone-15-plus',
+                name: 'iPhone 15 Plus',
+                brand: 'Apple',
+                category: 'celular',
+                year: 2024,
+                price: 29999,
+                description: '256GB, Verde, USB-C',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'iphone-15-pro',
+                name: 'iPhone 15 Pro',
+                brand: 'Apple',
+                category: 'celular',
+                year: 2024,
+                price: 32999,
+                description: '256GB, Titanio Natural, A17 Pro',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'iphone-15-pro-max',
+                name: 'iPhone 15 Pro Max',
+                brand: 'Apple',
+                category: 'celular',
+                year: 2024,
+                price: 37999,
+                description: '512GB, Titanio Azul, Zoom 5x',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            
+            // Samsung Galaxy S25 Series
+            {
+                id: 'samsung-s25',
+                name: 'Samsung Galaxy S25',
+                brand: 'Samsung',
+                category: 'celular',
+                year: 2024,
+                price: 25999,
+                description: '256GB, Negro Fantasma, Snapdragon 8 Gen 3',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'samsung-s25-plus',
+                name: 'Samsung Galaxy S25+',
+                brand: 'Samsung',
+                category: 'celular',
+                year: 2024,
+                price: 28999,
+                description: '512GB, Crema, Carga Rápida 45W',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'samsung-s25-ultra',
+                name: 'Samsung Galaxy S25 Ultra',
+                brand: 'Samsung',
+                category: 'celular',
+                year: 2024,
+                price: 35999,
+                description: '512GB, Titanio Gris, S Pen incluido',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            
+            // Samsung Galaxy A Series
+            {
+                id: 'samsung-a56',
+                name: 'Samsung Galaxy A56 5G',
+                brand: 'Samsung',
+                category: 'celular',
+                year: 2024,
+                price: 12999,
+                description: '256GB, Azul Hielo, Cámara 50MP',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'samsung-a36',
+                name: 'Samsung Galaxy A36 5G',
+                brand: 'Samsung',
+                category: 'celular',
+                year: 2024,
+                price: 8999,
+                description: '128GB, Negro, 5000mAh batería',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            
+            // Honor 200 Lite
+            {
+                id: 'honor-200-lite',
+                name: 'Honor 200 Lite',
+                brand: 'Honor',
+                category: 'celular',
+                year: 2024,
+                price: 7999,
+                description: '256GB, Azul Cian, Cámara 108MP',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'honor-200-lite-black',
+                name: 'Honor 200 Lite',
+                brand: 'Honor',
+                category: 'celular',
+                year: 2024,
+                price: 7999,
+                description: '256GB, Negro Medianoche, Diseño Slim',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            
+            // Xiaomi Series
+            {
+                id: 'xiaomi-14',
+                name: 'Xiaomi 14',
+                brand: 'Xiaomi',
+                category: 'celular',
+                year: 2024,
+                price: 19999,
+                description: '256GB, Negro, Cámara Leica',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'xiaomi-14-ultra',
+                name: 'Xiaomi 14 Ultra',
+                brand: 'Xiaomi',
+                category: 'celular',
+                year: 2024,
+                price: 27999,
+                description: '512GB, Blanco Titanio, Leica 50MP',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'xiaomi-redmi-note-13',
+                name: 'Xiaomi Redmi Note 13 Pro',
+                brand: 'Xiaomi',
+                category: 'celular',
+                year: 2024,
+                price: 9999,
+                description: '256GB, Púrpura, Carga 67W',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'xiaomi-poco-x6',
+                name: 'Xiaomi POCO X6 Pro',
+                brand: 'Xiaomi',
+                category: 'celular',
+                year: 2024,
+                price: 11999,
+                description: '512GB, Amarillo, 120Hz AMOLED',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            
+            // Routers
+            {
+                id: 'router-wifi6',
+                name: 'Router WiFi 6 AX3000',
+                brand: 'TP-Link',
+                category: 'router',
+                year: 2024,
+                price: 2499,
+                description: 'WiFi 6, Dual Band, 4 antenas',
+                image: '📡',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'router-wifi6-pro',
+                name: 'Router WiFi 6E AX5400',
+                brand: 'TP-Link',
+                category: 'router',
+                year: 2024,
+                price: 3999,
+                description: 'WiFi 6E, Tri-Band, 8 antenas',
+                image: '📡',
+                available: true,
+                imported: true
+            },
+            
+            // Accesorios adicionales
+            {
+                id: 'airpods-pro',
+                name: 'AirPods Pro (2da Gen)',
+                brand: 'Apple',
+                category: 'accesorio',
+                year: 2024,
+                price: 6999,
+                description: 'Cancelación de ruido, Audio espacial',
+                image: '🎧',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'airpods-3',
+                name: 'AirPods (3ra Gen)',
+                brand: 'Apple',
+                category: 'accesorio',
+                year: 2024,
+                price: 4999,
+                description: 'Audio espacial, Resistentes al agua',
+                image: '🎧',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'galaxy-buds2-pro',
+                name: 'Galaxy Buds2 Pro',
+                brand: 'Samsung',
+                category: 'accesorio',
+                year: 2024,
+                price: 4999,
+                description: 'Sonido Hi-Fi 360, ANC inteligente',
+                image: '🎵',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'galaxy-buds-fe',
+                name: 'Galaxy Buds FE',
+                brand: 'Samsung',
+                category: 'accesorio',
+                year: 2024,
+                price: 2999,
+                description: 'Sonido premium, Diseño ergonómico',
+                image: '🎵',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'apple-watch-9',
+                name: 'Apple Watch Series 9',
+                brand: 'Apple',
+                category: 'accesorio',
+                year: 2024,
+                price: 12999,
+                description: '45mm, GPS, Monitor salud avanzado',
+                image: '⌚',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'apple-watch-se',
+                name: 'Apple Watch SE',
+                brand: 'Apple',
+                category: 'accesorio',
+                year: 2024,
+                price: 8999,
+                description: '40mm, GPS, Fitness tracking',
+                image: '⌚',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'galaxy-watch-6',
+                name: 'Galaxy Watch 6',
+                brand: 'Samsung',
+                category: 'accesorio',
+                year: 2024,
+                price: 8999,
+                description: '44mm, Monitoreo deportivo premium',
+                image: '⏱️',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'galaxy-watch-6-classic',
+                name: 'Galaxy Watch 6 Classic',
+                brand: 'Samsung',
+                category: 'accesorio',
+                year: 2024,
+                price: 10999,
+                description: '47mm, Bisel giratorio, Elegante',
+                image: '⏱️',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'cargador-rapido-apple',
+                name: 'Cargador Rápido USB-C 20W',
+                brand: 'Apple',
+                category: 'accesorio',
+                year: 2024,
+                price: 799,
+                description: 'Original Apple, Carga rápida',
+                image: '🔌',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'cargador-samsung-45w',
+                name: 'Cargador Super Rápido 45W',
+                brand: 'Samsung',
+                category: 'accesorio',
+                year: 2024,
+                price: 999,
+                description: 'Original Samsung, USB-C',
+                image: '🔌',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'cable-usbc-apple',
+                name: 'Cable USB-C a Lightning 1m',
+                brand: 'Apple',
+                category: 'accesorio',
+                year: 2024,
+                price: 599,
+                description: 'Original Apple, Resistente',
+                image: '🔌',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'funda-iphone-15',
+                name: 'Funda Silicona iPhone 15',
+                brand: 'Apple',
+                category: 'accesorio',
+                year: 2024,
+                price: 1299,
+                description: 'Varios colores, MagSafe compatible',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'funda-samsung-s25',
+                name: 'Funda Protective Samsung S25',
+                brand: 'Samsung',
+                category: 'accesorio',
+                year: 2024,
+                price: 999,
+                description: 'Protección militar, Transparente',
+                image: '📱',
+                available: true,
+                imported: true
+            },
+            {
+                id: 'protector-pantalla',
+                name: 'Protector Pantalla Vidrio Templado',
+                brand: 'Universal',
+                category: 'accesorio',
+                year: 2024,
+                price: 399,
+                description: 'Anti-rayones, Ultra transparente',
+                image: '🛡️',
+                available: true,
+                imported: true
+            }
+        ];
+        
+        // ==================== STATE MANAGEMENT ====================
+        let cart = [];
+        let currentSection = 'home';
+        
+        // ==================== INITIALIZATION ====================
+        function init() {
+            // Load cart from localStorage
+            const savedCart = localStorage.getItem('claroHnCart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+            }
+            
+            // Update UI
+            updateCartCount();
+            renderAllProducts();
+            renderCartItems();
+            
+            // Initialize Element SDK if available
+            if (window.elementSdk) {
+                window.elementSdk.init({
+                    defaultConfig,
+                    onConfigChange: handleConfigChange,
+                    mapToCapabilities: (cfg) => ({
+                        recolorables: [],
+                        borderables: [],
+                        fontEditable: undefined,
+                        fontSizeable: undefined
+                    }),
+                    mapToEditPanelValues: (cfg) => new Map([
+                        ['hero_title', cfg.hero_title || defaultConfig.hero_title],
+                        ['hero_subtitle', cfg.hero_subtitle || defaultConfig.hero_subtitle],
+                        ['whatsapp_number', cfg.whatsapp_number || defaultConfig.whatsapp_number]
+                    ])
+                });
+            }
+        }
+        
+        async function handleConfigChange(newConfig) {
+            config = { ...config, ...newConfig };
+            
+            // Update hero text
+            const heroTitle = document.getElementById('hero-title');
+            const heroSubtitle = document.getElementById('hero-subtitle');
+            
+            if (heroTitle) heroTitle.textContent = config.hero_title || defaultConfig.hero_title;
+            if (heroSubtitle) heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+        }
+        
+        // ==================== NAVIGATION ====================
+        function navigateTo(section) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(s => {
+                s.classList.add('hidden');
+                s.classList.remove('visible');
+            });
+            
+            // Show target section
+            const targetSection = document.getElementById(`section-${section}`);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+                setTimeout(() => targetSection.classList.add('visible'), 50);
+            }
+            
+            // Update nav active state
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.nav === section) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Scroll to top
+            document.getElementById('app').scrollTo({ top: 0, behavior: 'smooth' });
+            
+            currentSection = section;
+            
+            // Re-render cart if navigating to cart
+            if (section === 'cart') {
+                renderCartItems();
+            }
+            
+            // Re-render products if navigating to catalog
+            if (section === 'catalog') {
+                renderAllProducts();
+            }
+        }
+        
+        // ==================== MOBILE MENU ====================
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const overlay = document.getElementById('menu-overlay');
+            
+            menu.classList.toggle('open');
+            overlay.classList.toggle('hidden');
+        }
+        
+        // ==================== PRODUCTS RENDERING ====================
+        function renderAllProducts() {
+            const container = document.getElementById('products-grid');
+            if (!container) return;
+            
+            container.innerHTML = products.map(product => createProductCard(product)).join('');
+        }
+        
+        function createProductCard(product) {
+            const badgeHtml = `
+                ${product.available ? '<span class="badge-available text-white text-xs font-bold px-2 py-1 rounded-full">Disponible</span>' : ''}
+                ${product.imported ? '<span class="badge-imported text-white text-xs font-bold px-2 py-1 rounded-full ml-1">Importado</span>' : ''}
+            `;
+            
+            return `
+                <div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg" data-product-id="${product.id}">
+                    <div class="relative overflow-hidden bg-gray-100 p-4 h-48 flex items-center justify-center">
+                        <img 
+                            src="${product.image}" 
+                            alt="${product.name}" 
+                            class="product-image max-h-full max-w-full object-contain"
+                            loading="lazy"
+                            onerror="this.parentElement.innerHTML='<span class=\\'text-8xl\\'>📱</span>'"
+                        >
+                        <div class="absolute top-3 left-3 flex flex-wrap gap-1">
+                            ${badgeHtml}
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">${product.brand} • ${product.year}</p>
+                        <h3 class="font-heading font-bold text-lg mb-2 line-clamp-2">${product.name}</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2">${product.description}</p>
+                        <div class="flex items-center justify-between">
+                            <span class="font-heading font-extrabold text-xl text-claro-red">L.${product.price.toLocaleString()}</span>
+                            <button onclick="addToCart('${product.id}')" class="btn-primary bg-claro-red text-white font-bold py-2 px-4 rounded-full hover:bg-claro-red-dark transition-all text-sm">
+                                Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // ==================== PRODUCT FILTERING ====================
+        function filterProducts() {
+            const searchTerm = document.getElementById('search-input')?.value.toLowerCase() || '';
+            const categoryFilter = document.getElementById('filter-category')?.value || '';
+            const brandFilter = document.getElementById('filter-brand')?.value || '';
+            const yearFilter = document.getElementById('filter-year')?.value || '';
+            const priceFilter = document.getElementById('filter-price')?.value || '';
+            
+            let filtered = products.filter(product => {
+                const matchesSearch = !searchTerm || 
+                    product.name.toLowerCase().includes(searchTerm) ||
+                    product.brand.toLowerCase().includes(searchTerm) ||
+                    product.description.toLowerCase().includes(searchTerm);
+                
+                const matchesCategory = !categoryFilter || product.category === categoryFilter;
+                const matchesBrand = !brandFilter || product.brand === brandFilter;
+                const matchesYear = !yearFilter || product.year.toString() === yearFilter;
+                
+                let matchesPrice = true;
+                if (priceFilter) {
+                    if (priceFilter === '0-10000') matchesPrice = product.price <= 10000;
+                    else if (priceFilter === '10000-25000') matchesPrice = product.price > 10000 && product.price <= 25000;
+                    else if (priceFilter === '25000+') matchesPrice = product.price > 25000;
+                }
+                
+                return matchesSearch && matchesCategory && matchesBrand && matchesYear && matchesPrice;
+            });
+            
+            const container = document.getElementById('products-grid');
+            const noResults = document.getElementById('no-results');
+            
+            if (filtered.length === 0) {
+                container.innerHTML = '';
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+                container.innerHTML = filtered.map(product => createProductCard(product)).join('');
+            }
+        }
+        
+        // ==================== CART FUNCTIONALITY ====================
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    brand: product.brand,
+                    year: product.year,
+                    price: product.price,
+                    image: product.image,
+                    type: 'product',
+                    quantity: 1
+                });
+            }
+            
+            saveCart();
+            updateCartCount();
+            showToast(`${product.name} agregado al carrito`, 'success');
+        }
+        
+        function addServiceToCart(serviceId, serviceName, price) {
+            const existingItem = cart.find(item => item.id === serviceId);
+            
+            if (existingItem) {
+                showToast(`${serviceName} ya está en tu carrito`, 'info');
+                return;
+            }
+            
+            cart.push({
+                id: serviceId,
+                name: serviceName,
+                price: price,
+                type: 'service',
+                quantity: 1
+            });
+            
+            saveCart();
+            updateCartCount();
+            showToast(`${serviceName} agregado al carrito`, 'success');
+        }
+        
+        function removeFromCart(itemId) {
+            cart = cart.filter(item => item.id !== itemId);
+            saveCart();
+            updateCartCount();
+            renderCartItems();
+            showToast('Producto eliminado del carrito', 'info');
+        }
+        
+        function updateQuantity(itemId, change) {
+            const item = cart.find(i => i.id === itemId);
+            if (!item) return;
+            
+            item.quantity += change;
+            
+            if (item.quantity <= 0) {
+                removeFromCart(itemId);
+                return;
+            }
+            
+            saveCart();
+            renderCartItems();
+        }
+        
+        function clearCart() {
+            cart = [];
+            saveCart();
+            updateCartCount();
+            renderCartItems();
+            showToast('Carrito vaciado', 'info');
+        }
+        
+        function saveCart() {
+            localStorage.setItem('claroHnCart', JSON.stringify(cart));
+        }
+        
+        function updateCartCount() {
+            const countEl = document.getElementById('cart-count');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            if (totalItems > 0) {
+                countEl.textContent = totalItems;
+                countEl.classList.remove('hidden');
+            } else {
+                countEl.classList.add('hidden');
+            }
+        }
+        
+        function renderCartItems() {
+            const itemsContainer = document.getElementById('cart-items');
+            const emptyState = document.getElementById('cart-empty');
+            const summary = document.getElementById('cart-summary');
+            
+            if (!itemsContainer) return;
+            
+            if (cart.length === 0) {
+                itemsContainer.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                summary.classList.add('hidden');
+                return;
+            }
+            
+            emptyState.classList.add('hidden');
+            summary.classList.remove('hidden');
+            
+            itemsContainer.innerHTML = cart.map(item => `
+                <div class="bg-white rounded-2xl p-4 shadow-sm flex items-center gap-4">
+                    ${item.type === 'product' && item.image ? `
+                        <div class="w-20 h-20 bg-gray-100 rounded-xl overflow-hidden flex items-center justify-center flex-shrink-0">
+                            <img 
+                                src="${item.image}" 
+                                alt="${item.name}" 
+                                class="max-h-full max-w-full object-contain"
+                                loading="lazy"
+                                onerror="this.parentElement.innerHTML='<span class=\\'text-3xl\\'>📱</span>';"
+                            >
+                        </div>
+                    ` : `
+                        <div class="w-20 h-20 bg-claro-red rounded-xl flex items-center justify-center flex-shrink-0">
+                            <span class="text-3xl text-white">🌐</span>
+                        </div>
+                    `}
+                    <div class="flex-grow">
+                        <h3 class="font-heading font-bold">${item.name}</h3>
+                        ${item.brand ? `<p class="text-sm text-gray-500">${item.brand} ${item.year}</p>` : ''}
+                        <p class="text-claro-red font-bold">L.${item.price.toLocaleString()}</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        ${item.type === 'product' ? `
+                            <button onclick="updateQuantity('${item.id}', -1)" class="qty-btn w-8 h-8 rounded-full border-2 border-gray-200 flex items-center justify-center font-bold">-</button>
+                            <span class="w-8 text-center font-semibold">${item.quantity}</span>
+                            <button onclick="updateQuantity('${item.id}', 1)" class="qty-btn w-8 h-8 rounded-full border-2 border-gray-200 flex items-center justify-center font-bold">+</button>
+                        ` : `
+                            <span class="text-sm text-gray-500">Servicio</span>
+                        `}
+                    </div>
+                    <button onclick="removeFromCart('${item.id}')" class="p-2 text-gray-400 hover:text-red-500 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                        </svg>
+                    </button>
+                </div>
+            `).join('');
+            
+            // Update totals
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            document.getElementById('cart-subtotal').textContent = `L.${subtotal.toLocaleString()}`;
+            document.getElementById('cart-total').textContent = `L.${subtotal.toLocaleString()}`;
+        }
+        
+        // ==================== WHATSAPP INTEGRATION ====================
+        function finalizeOrder() {
+            if (cart.length === 0) {
+                showToast('Tu carrito está vacío', 'error');
+                return;
+            }
+            
+            const whatsappNumber = config.whatsapp_number.replace(/[^0-9]/g, '');
+            
+            let message = `¡Hola! 😊 Soy cliente de Claro Honduras.\n\n`;
+            message += `Me interesa cotizar y conocer la disponibilidad de los siguientes productos/servicios:\n\n`;
+            message += `📋 *MI PEDIDO:*\n`;
+            message += `━━━━━━━━━━━━━━━━━━━━\n\n`;
+            
+            cart.forEach((item, index) => {
+                message += `*${index + 1}. ${item.name}*\n`;
+                if (item.brand) message += `   📱 Marca: ${item.brand}\n`;
+                if (item.year) message += `   📅 Año: ${item.year}\n`;
+                message += `   💰 Precio: L.${item.price.toLocaleString()}\n`;
+                if (item.quantity > 1) message += `   🔢 Cantidad: ${item.quantity}\n`;
+                message += `\n`;
+            });
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            message += `━━━━━━━━━━━━━━━━━━━━\n`;
+            message += `💵 *TOTAL REFERENCIAL: L.${total.toLocaleString()}*\n\n`;
+            message += `¿Me pueden confirmar disponibilidad y próximos pasos? 🙏\n\n`;
+            message += `¡Gracias!`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+            
+            showToast('Redirigiendo a WhatsApp...', 'success');
+        }
+        
+        function openWhatsAppGeneral() {
+            const whatsappNumber = config.whatsapp_number.replace(/[^0-9]/g, '');
+            const message = `¡Hola! 😊 Soy cliente de Claro Honduras y me gustaría más información. ¿Me pueden ayudar?`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        }
+        
+        // ==================== TOAST NOTIFICATIONS ====================
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            
+            const colors = {
+                success: 'bg-green-500',
+                error: 'bg-red-500',
+                info: 'bg-blue-500',
+                warning: 'bg-yellow-500'
+            };
+            
+            const icons = {
+                success: '✓',
+                error: '✕',
+                info: 'ℹ',
+                warning: '⚠'
+            };
+            
+            const toast = document.createElement('div');
+            toast.className = `${colors[type]} text-white px-6 py-3 rounded-xl shadow-lg flex items-center gap-3 max-w-sm`;
+            toast.innerHTML = `
+                <span class="font-bold">${icons[type]}</span>
+                <span>${message}</span>
+            `;
+            
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                toast.style.transition = 'all 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+        
+        // ==================== INITIALIZE ====================
+        init();
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c6b571200f367e7',t:'MTc2OTg4NDg1NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
